@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		483E95E22E37D1F700B64037 /* FrameworkOne in Frameworks */ = {isa = PBXBuildFile; productRef = 483E95E12E37D1F700B64037 /* FrameworkOne */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		485E61A42E37CB10006E2054 /* FrameworkTwo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FrameworkTwo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				483E95E22E37D1F700B64037 /* FrameworkOne in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +94,7 @@
 			);
 			name = FrameworkTwo;
 			packageProductDependencies = (
+				483E95E12E37D1F700B64037 /* FrameworkOne */,
 			);
 			productName = FrameworkTwo;
 			productReference = 485E61A42E37CB10006E2054 /* FrameworkTwo.framework */;
@@ -117,6 +123,9 @@
 			);
 			mainGroup = 485E619A2E37CB10006E2054;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				483E95E02E37D1F700B64037 /* XCRemoteSwiftPackageReference "spm-framework-one" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 485E61A52E37CB10006E2054 /* Products */;
 			projectDirPath = "";
@@ -369,6 +378,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		483E95E02E37D1F700B64037 /* XCRemoteSwiftPackageReference "spm-framework-one" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/darjeelingsteve/spm-framework-one";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		483E95E12E37D1F700B64037 /* FrameworkOne */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 483E95E02E37D1F700B64037 /* XCRemoteSwiftPackageReference "spm-framework-one" */;
+			productName = FrameworkOne;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 485E619B2E37CB10006E2054 /* Project object */;
 }

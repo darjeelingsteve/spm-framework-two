@@ -1,0 +1,15 @@
+{
+  "originHash" : "91aba23a4a082a4892cf6392bceddb70d5690cb1d4fa5ff625842b0f2f9f9737",
+  "pins" : [
+    {
+      "identity" : "spm-framework-one",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/darjeelingsteve/spm-framework-one",
+      "state" : {
+        "revision" : "64e817c9d0ad06b3f79d2ca3ed41ef5414b62549",
+        "version" : "1.0.0"
+      }
+    }
+  ],
+  "version" : 3
+}
