@@ -60,7 +60,7 @@ buildXCFramework() {
 	    -debug-symbols "$(pwd -P)/xcframeworkarchives/$1/ios.xcarchive/dSYMs/$1.framework.dSYM" \
 	    -framework "./xcframeworkarchives/$1/ios_sim.xcarchive/Products/Library/Frameworks/$1.framework" \
 	    -debug-symbols "$(pwd -P)/xcframeworkarchives/$1/ios_sim.xcarchive/dSYMs/$1.framework.dSYM" \
-	    -output "./Build/$1.xcframework" \
+	    -output "./$1.xcframework" \
 	    | tee xcodebuild-raw.log \
 	    | xcbeautify --renderer github-actions
 }

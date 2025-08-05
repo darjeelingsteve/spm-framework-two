@@ -20,7 +20,7 @@ runs:
       run: "${{ github.action_path }}/xcframework-build.sh -v ${{ inputs.VERSION_NUMBER }} -p ${{ inputs.XCODE_PROJECT }} -s ${{ inputs.SCHEME }} -c ${{ github.action_path }}/xcframework-build.xcconfig"
     - name: Zip XCFramework
       shell: sh
-      run: "zip -r ${{ inputs.XCODE_PROJECT }}.xcframework.zip ./Build/${{ inputs.XCODE_PROJECT }}.xcframework"
+      run: "zip -r ${{ inputs.XCODE_PROJECT }}.xcframework.zip ./${{ inputs.XCODE_PROJECT }}.xcframework"
     - name: Generate Zip Checksum
       shell: sh
       run: "swift package compute-checksum ${{ inputs.XCODE_PROJECT }}.xcframework.zip > checksum.txt"
