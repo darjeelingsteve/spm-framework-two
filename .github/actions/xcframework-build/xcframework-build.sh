@@ -15,7 +15,7 @@ if [ $# -ne 8 ]; then
   exit 1
 fi
 
-while getopts v:p:s: option
+while getopts v:p:s:c: option
 do
   case "${option}"
   in
