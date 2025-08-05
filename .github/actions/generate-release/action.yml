@@ -20,4 +20,4 @@ runs:
   steps:
     - name: Update Package.swift
       shell: sh
-      run: "echo ${{ inputs.GITHUB_SERVER }}/${{ inputs.GITHUB_REPOSITORY_NAME }}/releases/tag/${{ inputs.VERSION_NUMBER }}/${{ inputs.FRAMEWORK_NAME }}.xcframework.zip"
+      run: "echo ${{ inputs.GITHUB_SERVER }}/${{ inputs.GITHUB_REPOSITORY_NAME }}/releases/download/${{ inputs.VERSION_NUMBER }}/${{ inputs.FRAMEWORK_NAME }}.xcframework.zip"
