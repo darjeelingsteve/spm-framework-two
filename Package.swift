@@ -3,8 +3,8 @@
 
 import PackageDescription
 
-let frameworkTwoURL = "https://github.com/darjeelingsteve/spm-framework-two/releases/download/1.1.0/FrameworkTwo.xcframework.zip"
-let frameworkTwoChecksum = "1a72db756f2b3b64fd79eec2089e5838c983d8500ee1aec839224d0b0cf1fb96"
+let frameworkURL = "https://github.com/darjeelingsteve/spm-framework-two/releases/download/1.1.0/FrameworkTwo.xcframework.zip"
+let frameworkChecksum = "1a72db756f2b3b64fd79eec2089e5838c983d8500ee1aec839224d0b0cf1fb96"
 
 let package = Package(
     name: "FrameworkTwo",
@@ -19,8 +19,8 @@ let package = Package(
         // Targets can depend on other targets in this package and products from dependencies.
         .binaryTarget(
             name: "FrameworkTwo",
-            url: frameworkTwoURL,
-            checksum: frameworkTwoChecksum),
+            url: frameworkURL,
+            checksum: frameworkChecksum),
         .binaryTarget(
             name: "FrameworkOne",
             url: "https://github.com/darjeelingsteve/spm-framework-one/releases/download/1.0.1/FrameworkOne.xcframework.zip",
