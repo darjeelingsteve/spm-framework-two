@@ -2,14 +2,15 @@ set -euo pipefail
 
 echo "XCFramework build args: $@"
 
-if [ $# -ne 6 ]; then
+if [ $# -ne 8 ]; then
   echo ""
-  echo "Error: Requires a semantic version number, project, and scheme to be specified."
+  echo "Error: Requires a semantic version number, project, scheme, and xcconfig path to be specified."
   echo ""
   echo "Usage: "
   echo "archive.sh -v semantic.version.number"
   echo "           -p Project.xcodeproj"
   echo "           -s SchemeName"
+  echo "           -c XCConfig file path"
   echo ""
   exit 1
 fi
@@ -21,6 +22,7 @@ do
     v) VERSION=${OPTARG};;
     p) PROJECT=${OPTARG};;
     s) SCHEME=${OPTARG};;
+    c) XCCONFIG=${OPTARG};;
   esac
 done
 
@@ -38,7 +40,7 @@ buildXCFramework() {
 	    -scheme "$2" \
 	    -archivePath "./xcframeworkarchives/$1/ios.xcarchive" \
 	    -sdk iphoneos \
-	    -xcconfig xcframework-build.xcconfig \
+	    -xcconfig $3 \
 	    | tee xcodebuild-raw.log \
 	    | xcbeautify --renderer github-actions
 
@@ -48,7 +50,7 @@ buildXCFramework() {
 	    -scheme "$2" \
 	    -archivePath "./xcframeworkarchives/$1/ios_sim.xcarchive" \
 	    -sdk iphonesimulator \
-	    -xcconfig xcframework-build.xcconfig \
+	    -xcconfig $3 \
 	    | tee xcodebuild-raw.log \
 	    | xcbeautify --renderer github-actions
 
@@ -63,4 +65,4 @@ buildXCFramework() {
 	    | xcbeautify --renderer github-actions
 }
 
-buildXCFramework $PROJECT $SCHEME
+buildXCFramework $PROJECT $SCHEME $XCCONFIG
