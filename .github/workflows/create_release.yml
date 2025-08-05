@@ -18,8 +18,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Create Release
-        uses:
+      - name: Generate Release
+        uses: darjeelingsteve/spm-framework-two/.github/actions/generate-release@main
         with:
           VERSION_NUMBER: ${{ inputs.VERSION_NUMBER}}
           FRAMEWORK_NAME: "FrameworkTwo"
