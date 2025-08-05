@@ -1,0 +1,23 @@
+name: Create Release
+
+permissions:
+  contents: write
+
+on:
+  workflow_dispatch:
+    inputs:
+      VERSION_NUMBER:
+        description: 'Version Number'
+        required: true
+
+jobs:
+  updateBinaryTarget:
+    runs-on: macos-latest
+
+    steps:
+      - name: Build XCFramework
+        uses: darjeelingsteve/spm-framework-two/.github/actions/xcframework-build@main
+        with:
+          VERSION_NUMBER: ${{ inputs.VERSION_NUMBER}}
+          XCODE_PROJECT: "FrameworkTwo"
+          SCHEME: "FrameworkTwo"
