@@ -15,6 +15,9 @@ jobs:
     runs-on: macos-latest
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
       - name: Build XCFramework
         uses: darjeelingsteve/spm-framework-two/.github/actions/xcframework-build@main
         with:
