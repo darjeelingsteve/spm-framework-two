@@ -38,7 +38,7 @@ buildXCFramework() {
 	    -scheme "$2" \
 	    -archivePath "./xcframeworkarchives/$1/ios.xcarchive" \
 	    -sdk iphoneos \
-	    -xcconfig ./xcframework-build.xcconfig \
+	    -xcconfig xcframework-build.xcconfig \
 	    | tee xcodebuild-raw.log \
 	    | xcbeautify --renderer github-actions
 
@@ -48,7 +48,7 @@ buildXCFramework() {
 	    -scheme "$2" \
 	    -archivePath "./xcframeworkarchives/$1/ios_sim.xcarchive" \
 	    -sdk iphonesimulator \
-	    -xcconfig ./xcframework-build.xcconfig \
+	    -xcconfig xcframework-build.xcconfig \
 	    | tee xcodebuild-raw.log \
 	    | xcbeautify --renderer github-actions
 
