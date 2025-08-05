@@ -15,6 +15,9 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: List directory
+      shell: sh
+      run: "pwd && ls -la"
     - name: Create XCFramework
       shell: sh
       run: "${{ github.action_path }}/xcframework-build.sh -v ${{ inputs.VERSION_NUMBER }} -p ${{ inputs.XCODE_PROJECT }} -s ${{ inputs.SCHEME }}"
