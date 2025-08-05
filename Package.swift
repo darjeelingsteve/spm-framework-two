@@ -9,7 +9,7 @@ let package = Package(
         // Products define the executables and libraries a package produces, making them visible to other packages.
         .library(
             name: "FrameworkTwo",
-            targets: ["FrameworkTwo"]),
+            targets: ["FrameworkTwoTargets"]),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -18,5 +18,16 @@ let package = Package(
             name: "FrameworkTwo",
             url: "https://github.com/darjeelingsteve/spm-framework-two/releases/download/1.0.0/FrameworkTwo.xcframework.zip",
             checksum: "1a72db756f2b3b64fd79eec2089e5838c983d8500ee1aec839224d0b0cf1fb96"),
+        .binaryTarget(
+            name: "FrameworkOne",
+            url: "https://github.com/darjeelingsteve/spm-framework-one/releases/download/1.0.1/FrameworkOne.xcframework.zip",
+            checksum: "9722bdaa6f9dedb0a5243e4e48c5e9675c5baa37f97f03f24f796adc67cb9ba6"),
+        .target(
+            name: "FrameworkTwoTargets",
+            dependencies: [
+                .target(name: "FrameworkOne"),
+                .target(name: "FrameworkTwo")
+            ],
+            path: "FrameworkTwoTargets")
     ]
 )
