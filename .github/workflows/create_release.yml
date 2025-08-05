@@ -17,10 +17,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
-      - name: Build XCFramework
-        uses: darjeelingsteve/spm-framework-two/.github/actions/xcframework-build@main
+
+      - name: Create Release
+        uses:
         with:
           VERSION_NUMBER: ${{ inputs.VERSION_NUMBER}}
-          XCODE_PROJECT: "FrameworkTwo"
-          SCHEME: "FrameworkTwo"
+          FRAMEWORK_NAME: "FrameworkTwo"
+          GITHUB_SERVER: ${{ github.server_url }}
+          GITHUB_REPOSITORY_NAME: ${{ github.repository }}
