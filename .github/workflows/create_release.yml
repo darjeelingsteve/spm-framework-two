@@ -28,7 +28,7 @@ jobs:
 
   updatePackageManifest:
     name: Update Package Manifest
-    runs-on: macos-15
+    runs-on: ubuntu-latest
     needs: buildXCFramework
 
     steps:
@@ -64,7 +64,7 @@ jobs:
 
   createRelease:
     name: Create Release
-    runs-on: macos-15
+    runs-on: ubuntu-latest
     needs: updatePackageManifest
 
     steps:
