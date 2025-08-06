@@ -71,8 +71,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Pull Latest Changes
-        run: git pull --no-rebase
+      - name: Pull Latest Changes and Add Latest Commit SHA to Environment
+        run: |
+          git pull --no-rebase
+          latest_sha=`git rev-parse HEAD`
+          echo "LATEST_SHA=$latest_sha" >> "$GITHUB_ENV"
 
       - name: Add Release Tag
         uses: actions/github-script@v5
@@ -82,7 +85,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               ref: 'refs/tags/${{ inputs.VERSION_NUMBER}}',
-              sha: context.sha
+              sha: ${{ env.LATEST_SHA }}
             })
 
       - name: Download Framework Build Artifact
