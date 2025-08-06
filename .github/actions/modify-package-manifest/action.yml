@@ -8,6 +8,9 @@ inputs:
   FRAMEWORK_NAME:
     description: "The name of the framework in the repository"
     required: true
+  RELEASE_ZIP_CHECKSUM:
+    description: "The checksum of the release's zipped artifact"
+    required: true
   GITHUB_SERVER:
     description: "The url of GitHub server hosting the repository"
     required: true
@@ -20,4 +23,4 @@ runs:
   steps:
     - name: Update Package.swift
       shell: sh
-      run: "echo ${{ inputs.GITHUB_SERVER }}/${{ inputs.GITHUB_REPOSITORY_NAME }}/releases/download/${{ inputs.VERSION_NUMBER }}/${{ inputs.FRAMEWORK_NAME }}.xcframework.zip"
+      run: "${{ github.action_path }}/modify-package-manifest.sh -u ${{ inputs.GITHUB_SERVER }}/${{ inputs.GITHUB_REPOSITORY_NAME }}/releases/download/${{ inputs.VERSION_NUMBER }}/${{ inputs.FRAMEWORK_NAME }}.xcframework.zip -c ${{ inputs.RELEASE_ZIP_CHECKSUM }}"
