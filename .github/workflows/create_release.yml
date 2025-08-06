@@ -65,7 +65,7 @@ jobs:
   createRelease:
     name: Create Release
     runs-on: macos-15
-    needs: updatePackageManifest
+    needs: [buildXCFramework, updatePackageManifest]
 
     steps:
       - name: Checkout
@@ -90,5 +90,5 @@ jobs:
       - name: Generate Release
         uses: softprops/action-gh-release@v2
         with:
-          files: "FrameworkTwo.xcframework.zip"
+          files: ${{ needs.buildXCFramework.outputs.xcframework-zip-name }}
           tag_name: ${{ inputs.VERSION_NUMBER}}
