@@ -43,6 +43,7 @@ jobs:
       - name: Write Checksum Environment Variable
         shell: sh
         run: |
+          ls -la
           unzip Checksum.zip
           checksum_value=`cat checksum.txt`
           echo "CHECKSUM=$checksum_value" >> "$GITHUB_ENV"
