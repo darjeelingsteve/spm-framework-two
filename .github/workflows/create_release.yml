@@ -45,6 +45,7 @@ jobs:
         run: |
           checksum_value=`cat checksum.txt`
           echo "CHECKSUM=$checksum_value" >> "$GITHUB_ENV"
+          rm checksum.txt
 
       - name: Modify Package Manifest
         uses: darjeelingsteve/spm-framework-two/.github/actions/modify-package-manifest@main
