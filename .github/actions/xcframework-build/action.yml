@@ -1,5 +1,5 @@
-name: Create Release
-description: "Creates a new release of an iOS framework that is distributed as a binary target via Swift Package Manager"
+name: XCFramework Build
+description: "Creates an XCFramework and saves a zip of it along with a checksum as artifacts"
 
 inputs:
   VERSION_NUMBER:

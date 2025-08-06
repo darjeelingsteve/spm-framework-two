@@ -1,5 +1,5 @@
-name: Create Release
-description: "Creates a new release of an iOS framework that is distributed as a binary target via Swift Package Manager"
+name: Modify Package Manifest
+description: "Modifies a Package.swift file to reference a binary target with the given details"
 
 inputs:
   VERSION_NUMBER:
