@@ -7,10 +7,10 @@ if [ $# -ne 8 ]; then
   echo "Error: Requires a semantic version number, project, scheme, and xcconfig path to be specified."
   echo ""
   echo "Usage: "
-  echo "archive.sh -v semantic.version.number"
-  echo "           -p Project.xcodeproj"
-  echo "           -s SchemeName"
-  echo "           -c XCConfig file path"
+  echo "xcframework-build.sh -v semantic.version.number"
+  echo "                     -p Project.xcodeproj"
+  echo "                     -s SchemeName"
+  echo "                     -c XCConfig file path"
   echo ""
   exit 1
 fi

@@ -7,9 +7,9 @@ if [ $# -ne 6 ]; then
   echo "Error: Requires a path to the Package.swift manifest, zip URL, and checksum to be specified."
   echo ""
   echo "Usage: "
-  echo "archive.sh -p path-to-Package.swift"
-  echo "           -u url-to-release-zip"
-  echo "           -c Zip checksum"
+  echo "modify-package-manifest.sh -p path-to-Package.swift"
+  echo "                           -u url-to-release-zip"
+  echo "                           -c Zip checksum"
   echo ""
   exit 1
 fi
