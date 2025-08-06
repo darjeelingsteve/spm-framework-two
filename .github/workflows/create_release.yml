@@ -14,6 +14,8 @@ jobs:
   buildXCFramework:
     name: Build XCFramework
     runs-on: macos-15
+    outputs:
+      xcframework-zip-name: ${{ steps.Build-XCFramework.outputs.xcframework-zip-name }}
 
     steps:
       - name: Checkout
