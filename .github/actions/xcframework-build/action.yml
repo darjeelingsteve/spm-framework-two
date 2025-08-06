@@ -36,3 +36,6 @@ runs:
         name: Checksum
         path: |
           ./checksum.txt
+    - name: Output XCFramework Zip Name
+      shell: sh
+      run: echo "xcframework-zip-name=${{ inputs.XCODE_PROJECT }}.xcframework.zip" >> "$GITHUB_OUTPUT"
