@@ -49,6 +49,7 @@ jobs:
       - name: Modify Package Manifest
         uses: darjeelingsteve/spm-framework-two/.github/actions/modify-package-manifest@main
         with:
+          PACKAGE_MANIFEST_PATH: "./Package.swift"
           VERSION_NUMBER: ${{ inputs.VERSION_NUMBER}}
           FRAMEWORK_NAME: "FrameworkTwo"
           RELEASE_ZIP_CHECKSUM: ${{ env.CHECKSUM }}
