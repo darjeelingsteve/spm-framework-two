@@ -70,6 +70,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: 'main'
 
       - name: Add Release Tag
         uses: actions/github-script@v5
