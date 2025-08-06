@@ -44,15 +44,15 @@ jobs:
         shell: sh
         run: |
           unzip Checksum.zip
-          value=`cat checksum.txt`
-          echo "CHECKSUM=$value" >> "$GITHUB_ENV"
+          checksum_value=`cat checksum.txt`
+          echo "CHECKSUM=$checksum_value" >> "$GITHUB_ENV"
 
       - name: Modify Package Manifest
         uses: darjeelingsteve/spm-framework-two/.github/actions/modify-package-manifest@main
         with:
           VERSION_NUMBER: ${{ inputs.VERSION_NUMBER}}
           FRAMEWORK_NAME: "FrameworkTwo"
-          RELEASE_ZIP_CHECKSUM: ${{ CHECKSUM }}
+          RELEASE_ZIP_CHECKSUM: ${{ env.CHECKSUM }}
           GITHUB_SERVER: ${{ github.server_url }}
           GITHUB_REPOSITORY_NAME: ${{ github.repository }}
 
