@@ -41,7 +41,7 @@ jobs:
           name: Checksum
 
       - name: Write Checksum Environment Variable
-      - shell: sh
+        shell: sh
         run: |
           unzip Checksum.zip
           value=`cat checksum.txt`
@@ -85,7 +85,7 @@ jobs:
           name: XCFramework-Archive
 
       - name: Unzip Framework Build Artifact
-      - shell: sh
+        shell: sh
         run: |
           unzip XCFramework-Archive.zip
 
