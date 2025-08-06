@@ -11,17 +11,86 @@ on:
         required: true
 
 jobs:
-  updateBinaryTarget:
+  buildXCFramework:
+    name: Build XCFramework
     runs-on: macos-15
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Generate Release
-        uses: darjeelingsteve/spm-framework-two/.github/actions/generate-release@main
+      - name: Build XCFramework
+        uses: darjeelingsteve/spm-framework-two/.github/actions/xcframework-build@main
+        with:
+          VERSION_NUMBER: ${{ inputs.VERSION_NUMBER}}
+          XCODE_PROJECT: "FrameworkTwo"
+          SCHEME: "FrameworkTwo"
+
+  updatePackageManifest:
+    name: Update Package Manifest
+    runs-on: macos-15
+    needs: buildXCFramework
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download Checksum Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: Checksum
+
+      - name: Write Checksum Environment Variable
+      - shell: sh
+        run: |
+          unzip Checksum.zip
+          value=`cat checksum.txt`
+          echo "{CHECKSUM}={value}" >> "$GITHUB_ENV"
+
+      - name: Modify Package Manifest
+        uses: darjeelingsteve/spm-framework-two/.github/actions/modify-package-manifest@main
         with:
           VERSION_NUMBER: ${{ inputs.VERSION_NUMBER}}
           FRAMEWORK_NAME: "FrameworkTwo"
+          RELEASE_ZIP_CHECKSUM: ${{ CHECKSUM }}
           GITHUB_SERVER: ${{ github.server_url }}
           GITHUB_REPOSITORY_NAME: ${{ github.repository }}
+
+      - name: Commit Changes
+        uses: stefanzweifel/git-auto-commit-action@v6
+
+  createRelease:
+    name: Create Release
+    runs-on: macos-15
+    needs: updatePackageManifest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Add Release Tag
+        uses: actions/github-script@v5
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/${{ inputs.VERSION_NUMBER}}',
+              sha: context.sha
+            })
+
+      - name: Download Framework Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: XCFramework-Archive
+
+      - name: Unzip Framework Build Artifact
+      - shell: sh
+        run: |
+          unzip XCFramework-Archive.zip
+
+      - name: Generate Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: "FrameworkTwo.xcframework.zip"
+          tag_name: ${{ inputs.VERSION_NUMBER}}
