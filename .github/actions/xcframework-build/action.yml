@@ -14,7 +14,7 @@ inputs:
 outputs:
   zip_path:
     description: "Path to the zipped XCFramework"
-    value: ${{ steps.zipstep.outputs.zip_path }}
+    value: ${{ steps.zip.outputs.zip_path }}
 
 runs:
   using: "composite"
@@ -24,22 +24,24 @@ runs:
       run: "${{ github.action_path }}/xcframework-build.sh -v ${{ inputs.VERSION_NUMBER }} -p ${{ inputs.XCODE_PROJECT }} -s ${{ inputs.SCHEME }} -c ${{ github.action_path }}/xcframework-build.xcconfig"
 
     - name: Zip XCFramework and Set Output
-      id: zipstep
+      id: zip
       shell: sh
       run: |
         zip_name="${{ inputs.XCODE_PROJECT }}.xcframework.zip"
         zip -r "$zip_name" "./${{ inputs.XCODE_PROJECT }}.xcframework"
         echo "zip_path=${zip_name}" >> "$GITHUB_OUTPUT"
+        echo "ZIP_NAME=$zip_name" >> "$GITHUB_ENV"
 
     - name: Generate Zip Checksum
       shell: sh
-      run: "swift package compute-checksum ${{ inputs.XCODE_PROJECT }}.xcframework.zip > checksum.txt"
+      run: |
+        swift package compute-checksum "$ZIP_NAME" > checksum.txt
 
     - name: Archive XCFramework.zip
       uses: actions/upload-artifact@v4
       with:
         name: XCFramework-Archive
-        path: ./${{ inputs.XCODE_PROJECT }}.xcframework.zip
+        path: $ZIP_NAME
 
     - name: Archive Checksum
       uses: actions/upload-artifact@v4
