@@ -55,7 +55,7 @@ jobs:
         with:
           PACKAGE_MANIFEST_PATH: "./Package.swift"
           VERSION_NUMBER: ${{ inputs.VERSION_NUMBER }}
-          FRAMEWORK_NAME: "FrameworkTwo"
+          RELEASE_ZIP_NAME: ${{ needs.buildXCFramework.outputs.zip_path }}
           RELEASE_ZIP_CHECKSUM: ${{ env.CHECKSUM }}
           GITHUB_SERVER: ${{ github.server_url }}
           GITHUB_REPOSITORY_NAME: ${{ github.repository }}

@@ -8,8 +8,8 @@ inputs:
   VERSION_NUMBER:
     description: "The version number of the new release"
     required: true
-  FRAMEWORK_NAME:
-    description: "The name of the framework in the repository"
+  RELEASE_ZIP_NAME:
+    description: "The name to the release's zipped artifact"
     required: true
   RELEASE_ZIP_CHECKSUM:
     description: "The checksum of the release's zipped artifact"
@@ -26,4 +26,4 @@ runs:
   steps:
     - name: Update Package.swift
       shell: sh
-      run: "${{ github.action_path }}/modify-package-manifest.sh -p ${{ inputs.PACKAGE_MANIFEST_PATH }} -u ${{ inputs.GITHUB_SERVER }}/${{ inputs.GITHUB_REPOSITORY_NAME }}/releases/download/${{ inputs.VERSION_NUMBER }}/${{ inputs.FRAMEWORK_NAME }}.xcframework.zip -c ${{ inputs.RELEASE_ZIP_CHECKSUM }}"
+      run: "${{ github.action_path }}/modify-package-manifest.sh -p ${{ inputs.PACKAGE_MANIFEST_PATH }} -u ${{ inputs.GITHUB_SERVER }}/${{ inputs.GITHUB_REPOSITORY_NAME }}/releases/download/${{ inputs.VERSION_NUMBER }}/${{ inputs.RELEASE_ZIP_NAME }} -c ${{ inputs.RELEASE_ZIP_CHECKSUM }}"
