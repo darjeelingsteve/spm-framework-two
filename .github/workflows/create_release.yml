@@ -11,15 +11,11 @@ on:
         required: true
 
 jobs:
-  createRelease:
-    name: Create Release
-    runs-on: macos-15
-
-    steps:
-      - name: Call Create Release Workflow
-        uses: darjeelingsteve/ios-workflows/.github/workflows/create-release.yml@main
-        with:
-          FRAMEWORK_NAME: "FrameworkTwo"
-          XCODE_PROJECT_NAME: "FrameworkTwo"
-          SCHEME_NAME: "FrameworkTwo"
-          VERSION_NUMBER: ${{ inputs.VERSION_NUMBER }}
+  create-release:
+    uses: darjeelingsteve/ios-workflows/.github/workflows/create-release.yml@main
+    with:
+      FRAMEWORK_NAME: "FrameworkTwo"
+      XCODE_PROJECT_NAME: "FrameworkTwo"
+      SCHEME_NAME: "FrameworkTwo"
+      VERSION_NUMBER: ${{ inputs.VERSION_NUMBER }}
+    secrets: inherit
