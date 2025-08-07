@@ -102,6 +102,9 @@ jobs:
       - name: Debug file listing
         run: ls -al
 
+      - name: Debug zip_path output
+        run: echo "ZIP PATH: ${{ needs.buildXCFramework.outputs.zip_path }}"
+
       - name: Generate Release
         uses: softprops/action-gh-release@v2
         with:

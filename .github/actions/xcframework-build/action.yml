@@ -27,7 +27,7 @@ runs:
       run: |
         zip_name="${{ inputs.XCODE_PROJECT }}.xcframework.zip"
         zip -r "$zip_name" "./${{ inputs.XCODE_PROJECT }}.xcframework"
-        echo "zip_path=$zip_name" >> "$GITHUB_OUTPUT"
+        echo "zip_path=${zip_name}" >> "$GITHUB_OUTPUT"
     
     - name: Generate Zip Checksum
       shell: sh
