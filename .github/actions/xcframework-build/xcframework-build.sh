@@ -26,11 +26,9 @@ do
   esac
 done
 
-version_regex_pattern="^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)?$"
-
-if [[ ! "$VERSION" =~ $version_regex_pattern ]]; then
-	echo "Invalid version number: \"$VERSION\"" 1>&2 
-	exit -1
+if [[ ! "$VERSION" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
+  echo "Invalid version number: \"$VERSION\"" 1>&2 
+  exit 1
 fi
 
 buildXCFramework() {
