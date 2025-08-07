@@ -12,7 +12,7 @@ on:
 
 jobs:
   create-release:
-    uses: darjeelingsteve/ios-workflows/.github/workflows/create-release.yml@main
+    uses: darjeelingsteve/ios-workflows/.github/workflows/create_release.yml@main
     with:
       FRAMEWORK_NAME: "FrameworkTwo"
       XCODE_PROJECT_NAME: "FrameworkTwo"
