@@ -3,8 +3,8 @@
 
 import PackageDescription
 
-let frameworkURL = "https://github.com/darjeelingsteve/spm-framework-two/releases/download/1.1.10/FrameworkTwo.xcframework.zip"
-let frameworkChecksum = "24b4beb81167854b0d49dda467b6afdaa5e97b8b2236ac0df8f0d10ad68689df"
+let frameworkURL = "https://github.com/darjeelingsteve/spm-framework-two/releases/download/1.1.11/FrameworkTwo.xcframework.zip"
+let frameworkChecksum = "4c1ada26d88aaa0478cacc938ae778d83be7609c183e37ae9e93931b744ec3f9"
 
 let package = Package(
     name: "FrameworkTwo",
