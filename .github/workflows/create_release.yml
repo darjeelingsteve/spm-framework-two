@@ -15,18 +15,20 @@ jobs:
     name: Build XCFramework
     runs-on: macos-15
 
+    outputs:
+      zip_path: ${{ steps.zip-output.outputs.zip_path }}
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Build XCFramework
+        id: zip-output
         uses: darjeelingsteve/spm-framework-two/.github/actions/xcframework-build@main
         with:
-          VERSION_NUMBER: ${{ inputs.VERSION_NUMBER}}
+          VERSION_NUMBER: ${{ inputs.VERSION_NUMBER }}
           XCODE_PROJECT: "FrameworkTwo"
           SCHEME: "FrameworkTwo"
-    outputs:
-      zip_path: ${{ steps.set_zip_path.outputs.zip_path }}
 
   updatePackageManifest:
     name: Update Package Manifest
@@ -53,7 +55,7 @@ jobs:
         uses: darjeelingsteve/spm-framework-two/.github/actions/modify-package-manifest@main
         with:
           PACKAGE_MANIFEST_PATH: "./Package.swift"
-          VERSION_NUMBER: ${{ inputs.VERSION_NUMBER}}
+          VERSION_NUMBER: ${{ inputs.VERSION_NUMBER }}
           FRAMEWORK_NAME: "FrameworkTwo"
           RELEASE_ZIP_CHECKSUM: ${{ env.CHECKSUM }}
           GITHUB_SERVER: ${{ github.server_url }}
@@ -67,7 +69,9 @@ jobs:
   createRelease:
     name: Create Release
     runs-on: macos-15
-    needs: updatePackageManifest
+    needs: 
+      - buildXCFramework
+      - updatePackageManifest
 
     steps:
       - name: Checkout
@@ -86,14 +90,17 @@ jobs:
             github.rest.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: 'refs/tags/${{ inputs.VERSION_NUMBER}}',
+              ref: 'refs/tags/${{ inputs.VERSION_NUMBER }}',
               sha: process.env.LATEST_SHA
             })
 
-      - name: Download Framework Build Artifact
+      - name: Download XCFramework Artifact
         uses: actions/download-artifact@v4
         with:
           name: XCFramework-Archive
+
+      - name: Debug file listing
+        run: ls -al
 
       - name: Generate Release
         uses: softprops/action-gh-release@v2
