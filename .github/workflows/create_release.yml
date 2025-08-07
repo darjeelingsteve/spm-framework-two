@@ -85,7 +85,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               ref: 'refs/tags/${{ inputs.VERSION_NUMBER}}',
-              sha: ${{ env.LATEST_SHA }}
+              sha: process.env.LATEST_SHA
             })
 
       - name: Download Framework Build Artifact
