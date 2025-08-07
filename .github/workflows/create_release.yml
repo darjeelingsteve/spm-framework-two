@@ -14,16 +14,15 @@ jobs:
   buildXCFramework:
     name: Build XCFramework
     runs-on: macos-15
-
     outputs:
-      zip_path: ${{ steps.zip-output.outputs.zip_path }}
+      zip_path: ${{ steps.build.outputs.zip_path }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Build XCFramework
-        id: zip-output
+        id: build
         uses: darjeelingsteve/spm-framework-two/.github/actions/xcframework-build@main
         with:
           VERSION_NUMBER: ${{ inputs.VERSION_NUMBER }}
