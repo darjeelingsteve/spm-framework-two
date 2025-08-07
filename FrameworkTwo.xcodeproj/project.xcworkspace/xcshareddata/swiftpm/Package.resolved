@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/darjeelingsteve/spm-framework-one",
       "state" : {
-        "revision" : "55172f1fc6c1e4113660773e6402bde356445c77",
-        "version" : "1.0.1"
+        "revision" : "940a07fe64961e7688db799830e361a8e19e0982",
+        "version" : "1.0.4"
       }
     }
   ],
