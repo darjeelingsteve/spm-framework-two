@@ -1,21 +1,18 @@
-name: Create Release
+name: Add Framework Zip to Release
 
 permissions:
   contents: write
 
 on:
-  workflow_dispatch:
-    inputs:
-      VERSION_NUMBER:
-        description: 'Version Number'
-        required: true
+  release:
+    types: [published]
 
 jobs:
-  create-release:
+  release-job:
     uses: darjeelingsteve/ios-workflows/.github/workflows/create_release.yml@main
     with:
       FRAMEWORK_NAME: "FrameworkTwo"
       XCODE_PROJECT_NAME: "FrameworkTwo"
       SCHEME_NAME: "FrameworkTwo"
-      VERSION_NUMBER: ${{ inputs.VERSION_NUMBER }}
+      TAG_NAME: ${{ github.event.release.tag_name }}
     secrets: inherit
